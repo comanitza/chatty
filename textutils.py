@@ -33,5 +33,3 @@ def bagOfWords(tokenizedSentence, allWords):
             bag[i] = 1.0
 
     return bag
-
-print(tokenizeSentence("this is just a simulation"))
