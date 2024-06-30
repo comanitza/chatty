@@ -45,24 +45,23 @@ if prompt:
         My topics mostly revolve around a dummy online shop.
         Available commands: 
         
-        :blue[!categories]
-        
-        :blue[!debug {on/off}]
+        :blue[!categories] - see all the loaded/available categories
+        :blue[!debug {on/off}] - set the debug messages to true / false
         ''')
 
     # show loaded/available categories/tags
     elif prompt == "!categories":
-        st.write(f"Available categories: {tags}")
+        st.info(f"Available categories: {tags}")
 
     elif prompt.startswith("!debug"):
 
         if prompt == "!debug on":
             st.session_state[DEBUG_MESSAGE_KEY] = "on"
-            st.write(":blue[debug] set to on")
+            st.info(":blue[debug] set to on")
 
         if prompt == "!debug off":
             del st.session_state[DEBUG_MESSAGE_KEY]
-            st.write(":blue[debug] set to off")
+            st.info(":blue[debug] set to off")
 
     # main business
     else:
