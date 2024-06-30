@@ -34,34 +34,45 @@ st.write("hello chatty")
 
 prompt = st.chat_input("Say something")
 if prompt:
-    st.write(f"You: {prompt}")
+    # show available commands
+    if prompt == "!help":
+        st.write("Available commands: !categories")
 
-    tokenized = textutils.tokenizeSentence(prompt)
-    # this will return the representation of our bag of words, an array with the size of allWords, one hot encoded
-    bag = textutils.bagOfWords(tokenized, allWords)
+    # show loaded/available categories/tags
+    elif prompt == "!categories":
+        st.write(f"Available categories: {tags}")
 
-    # we need to reshape our array, to be in the form [[1, 2, 3 .... len(allWords)]]
-    bag = bag.reshape(1, bag.shape[0])
-    X = torch.from_numpy(bag)
-
-    out = model(X)
-    # from the out tensor (which is the size of our classes) we have the value representing the probabilities, we should pick the largest one
-    _, predicted = torch.max(out, dim=1)
-    prediction = predicted.item()
-
-    # here we get the tag name, from the tags array we get the index of our prediction
-    tag = tags[prediction]
-
-    # we apply softmax to the the percentages of the predictions
-    probs = torch.softmax(out, dim=1)
-    # we get the actual percentage for our prediction
-    prob = probs[0][prediction]
-
-    print(f"[tag is {tag} with {prob} probability]")
-
-    if prob > 0.7:
-        for intent in intents["intents"]:
-            if tag == intent["tag"]:
-                st.write(f"{botName}: {random.choice(intent['responses'])}")
+    # main business
     else:
-        st.write(f"{botName}: I can't understand, please rephrase")
+
+        st.write(f"You: {prompt}")
+
+        tokenized = textutils.tokenizeSentence(prompt)
+        # this will return the representation of our bag of words, an array with the size of allWords, one hot encoded
+        bag = textutils.bagOfWords(tokenized, allWords)
+
+        # we need to reshape our array, to be in the form [[1, 2, 3 .... len(allWords)]]
+        bag = bag.reshape(1, bag.shape[0])
+        X = torch.from_numpy(bag)
+
+        out = model(X)
+        # from the out tensor (which is the size of our classes) we have the value representing the probabilities, we should pick the largest one
+        _, predicted = torch.max(out, dim=1)
+        prediction = predicted.item()
+
+        # here we get the tag name, from the tags array we get the index of our prediction
+        tag = tags[prediction]
+
+        # we apply softmax to the the percentages of the predictions
+        probs = torch.softmax(out, dim=1)
+        # we get the actual percentage for our prediction
+        prob = probs[0][prediction]
+
+        print(f"[tag is {tag} with {prob} probability]")
+
+        if prob > 0.7:
+            for intent in intents["intents"]:
+                if tag == intent["tag"]:
+                    st.write(f"{botName}: {random.choice(intent['responses'])}")
+        else:
+            st.write(f"{botName}: I can't understand, please rephrase")
