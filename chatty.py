@@ -29,6 +29,7 @@ model.load_state_dict(modelState)
 model.eval()
 
 botName = "Alice"
+DEBUG_MESSAGE_KEY = "debugMessage"
 
 st.write("hello chatty, just talk with the bot or type !help for some info.")
 
@@ -39,12 +40,25 @@ if prompt:
         st.info('''
         I am a very simple chat bot, just as me things.
         My topics mostly revolve around a dummy online shop
-        Available commands: :blue[!categories]
+        Available commands: 
+            :blue[!categories]
+            :blue[!debug {on/off}]
         ''')
 
     # show loaded/available categories/tags
     elif prompt == "!categories":
         st.write(f"Available categories: {tags}")
+
+    elif prompt.startswith("!debug"):
+
+        if prompt == "!debug on":
+            st.session_state[DEBUG_MESSAGE_KEY] = "on"
+            st.echo(":blue[debug] set to on")
+
+        if prompt == "!debug off":
+            st.session_state[DEBUG_MESSAGE_KEY] = None
+            st.echo(":blue[debug] set to off")
+
 
     # main business
     else:
@@ -72,11 +86,13 @@ if prompt:
         # we get the actual percentage for our prediction
         prob = probs[0][prediction]
 
-        st.write(f":gray[tag/category is {tag} with {prob} probability]")
-
         if prob > 0.7:
             for intent in intents["intents"]:
                 if tag == intent["tag"]:
                     st.write(f"{botName}: {random.choice(intent['responses'])}")
         else:
             st.write(f"{botName}: I can't understand, please rephrase")
+
+        # this is a debug feature
+        if DEBUG_MESSAGE_KEY in st.session_state:
+            st.echo(f":gray[[tag/category is {tag} with {prob} probability]]")
