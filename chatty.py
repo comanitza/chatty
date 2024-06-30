@@ -44,8 +44,8 @@ if prompt:
         I am a very simple chat bot, just as me things.
         My topics mostly revolve around a dummy online shop
         Available commands: 
-            :blue[!categories]
-            :blue[!debug {on/off}]
+        :blue[!categories]
+        :blue[!debug {on/off}]
         ''')
 
     # show loaded/available categories/tags
@@ -59,9 +59,8 @@ if prompt:
             st.write(":blue[debug] set to on")
 
         if prompt == "!debug off":
-            st.session_state[DEBUG_MESSAGE_KEY] = None
+            del st.session_state[DEBUG_MESSAGE_KEY]
             st.write(":blue[debug] set to off")
-
 
     # main business
     else:
