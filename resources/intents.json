@@ -51,7 +51,8 @@
         "Do you accept Visa ?",
         "Can I pay with Paypal ?",
         "Are you cash only ?",
-        "How can I pay ?"
+        "How can I pay ?",
+        "Do you take cash ?"
       ],
       "responses": [
         "We accept VISA, Mastercard and Paypal",
@@ -89,10 +90,27 @@
         "Who are you ?",
         "What are you ?",
         "Are you real ?",
-        "Are you human ?"
+        "Are you human ?",
+        "Are you a person ?",
+        "Who is this ?",
+        "What is your name ?"
       ],
       "responses": [
         "I am a very simple chat bot, but I am getting better."
+      ]
+    },
+    {
+      "tag": "help",
+      "patterns": [
+        "Can you help me ?",
+        "I need some help",
+        "I am lost",
+        "What should I do next ?",
+        "Can you assist me ?",
+        "Can you please help me ?"
+      ],
+      "responses": [
+        "I am a very simple chat bot, and I here to assist you. Type !help for some hints."
       ]
     }
   ]

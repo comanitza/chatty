@@ -30,13 +30,17 @@ model.eval()
 
 botName = "Alice"
 
-st.write("hello chatty")
+st.write("hello chatty, just talk with the bot or type !help for some info.")
 
 prompt = st.chat_input("Say something")
 if prompt:
     # show available commands
     if prompt == "!help":
-        st.write("Available commands: !categories")
+        st.info('''
+        I am a very simple chat bot, just as me things.
+        My topics mostly revolve around a dummy online shop
+        Available commands: :blue[!categories]
+        ''')
 
     # show loaded/available categories/tags
     elif prompt == "!categories":
@@ -68,7 +72,7 @@ if prompt:
         # we get the actual percentage for our prediction
         prob = probs[0][prediction]
 
-        print(f"[tag is {tag} with {prob} probability]")
+        st.write(f":gray[tag/category is {tag} with {prob} probability]")
 
         if prob > 0.7:
             for intent in intents["intents"]:
