@@ -28,7 +28,7 @@ model = FeedForwardModel(inputSize=inputSize, hiddenSize=hiddenSize, outputSize=
 model.load_state_dict(modelState)
 model.eval()
 
-botName = "Alice"
+botName = "Alice the bot"
 DEBUG_MESSAGE_KEY = "debugMessage"
 
 st.markdown("""
@@ -46,6 +46,7 @@ if prompt:
         Available commands: 
         
         :blue[!categories] - see all the loaded/available categories
+        
         :blue[!debug {on/off}] - set the debug messages to true / false
         ''')
 
