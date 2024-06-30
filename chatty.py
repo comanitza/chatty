@@ -31,7 +31,10 @@ model.eval()
 botName = "Alice"
 DEBUG_MESSAGE_KEY = "debugMessage"
 
-st.write("hello chatty, just talk with the bot or type !help for some info.")
+st.markdown("""
+<h2>hello chatty, just talk with the bot or type <span style="color:blue">!help</span> for some info.</h2>
+""")
+
 
 prompt = st.chat_input("Say something")
 if prompt:
