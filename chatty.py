@@ -42,9 +42,11 @@ if prompt:
     if prompt == "!help":
         st.info('''
         I am a very simple chat bot, just as me things.
-        My topics mostly revolve around a dummy online shop
+        My topics mostly revolve around a dummy online shop.
         Available commands: 
+        
         :blue[!categories]
+        
         :blue[!debug {on/off}]
         ''')
 
