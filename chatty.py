@@ -32,7 +32,7 @@ botName = "Alice"
 DEBUG_MESSAGE_KEY = "debugMessage"
 
 st.markdown("""
-<h2>hello chatty, just talk with the bot or type <span style="color:blue">!help</span> for some info.</h2>
+hello chatty, just talk with the bot or type :blue[!help] for some info.
 """)
 
 
@@ -56,11 +56,11 @@ if prompt:
 
         if prompt == "!debug on":
             st.session_state[DEBUG_MESSAGE_KEY] = "on"
-            st.echo(":blue[debug] set to on")
+            st.write(":blue[debug] set to on")
 
         if prompt == "!debug off":
             st.session_state[DEBUG_MESSAGE_KEY] = None
-            st.echo(":blue[debug] set to off")
+            st.write(":blue[debug] set to off")
 
 
     # main business
@@ -98,4 +98,4 @@ if prompt:
 
         # this is a debug feature
         if DEBUG_MESSAGE_KEY in st.session_state:
-            st.echo(f":gray[[tag/category is {tag} with {prob} probability]]")
+            st.write(f":gray[[tag/category is {tag} with {prob} probability]]")
